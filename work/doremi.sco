@@ -1,3 +1,6 @@
+#Time   On/Off  Channel   Note    Velocity
+#       Control           Effect  On/Off
+
 0	9	1	60	100
 120	8	1	60	100
 40	9	1	62	100

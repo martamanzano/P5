@@ -1,6 +1,6 @@
 #include <iostream>
 #include <math.h>
-#include "instrument_dumb.h"
+#include "seno.h"
 #include "keyvalue.h"
 
 #include <stdlib.h>
@@ -8,7 +8,7 @@
 using namespace upc;
 using namespace std;
 
-InstrumentDumb::InstrumentDumb(const std::string &param) 
+InstrumentSIN::InstrumentSIN(const std::string &param) 
   : adsr(SamplingRate, param) {
   bActive = false;
   x.resize(BSIZE);
@@ -34,12 +34,17 @@ InstrumentDumb::InstrumentDumb(const std::string &param)
 }
 
 
-void InstrumentDumb::command(long cmd, long note, long vel) {
+void InstrumentSIN::command(long cmd, long note, long vel) {
+    f0=440*pow(2,(note-69.)/12);
   if (cmd == 9) {		//'Key' pressed: attack begins
     bActive = true;
     adsr.start();
     index = 0;
+    a = 0;
+    inc = ((f0 / SamplingRate) * tbl.size());
+    //inc = (f0/SamplingRate);
 	A = vel / 127.;
+  a = 0;
   }
   else if (cmd == 8) {	//'Key' released: sustain ends, release begins
     adsr.stop();
@@ -50,19 +55,24 @@ void InstrumentDumb::command(long cmd, long note, long vel) {
 }
 
 
-const vector<float> & InstrumentDumb::synthesize() {
+const vector<float> & InstrumentSIN::synthesize() {
+  if (not bActive)
+    return x;
+  
   if (not adsr.active()) {
-    x.assign(x.size(), 0);
     bActive = false;
+    x.assign(x.size(), 0);
     return x;
   }
-  else if (not bActive)
-    return x;
 
   for (unsigned int i=0; i<x.size(); ++i) {
-    x[i] = A * tbl[index++];
-    if (index == tbl.size())
-      index = 0;
+  
+    a = a + inc;
+    x[i] =  A*tbl[round(a)];
+    //if (index == tbl.size())
+      //index = index - tbl.size();
+
+    while(a >= tbl.size()) a = a - tbl.size();
   }
   adsr(x); //apply envelope to x and update internal status of ADSR
 
