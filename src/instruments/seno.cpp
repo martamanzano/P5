@@ -67,10 +67,17 @@ const vector<float> & InstrumentSIN::synthesize() {
 
   for (unsigned int i=0; i<x.size(); ++i) {
   
-    a = a + inc;
-    x[i] =  A*tbl[round(a)];
-    //if (index == tbl.size())
-      //index = index - tbl.size();
+  a = a + inc;
+  
+
+    //AMB INTERPOLACIÓ A MILLORAR 
+    	
+    x[i] =tbl[round(a)]+(a-round(a))*(tbl[round(a+1)]-tbl[round(a)])/(round(a+1)-round(a));
+    //SENSE INTERPOLACIÓ
+    
+    //x[i] =  A*tbl[round(a)];
+    if (index == tbl.size())
+      index = index - tbl.size();
 
     while(a >= tbl.size()) a = a - tbl.size();
   }
