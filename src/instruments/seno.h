@@ -1,5 +1,5 @@
-#ifndef INSTRUMENT_SIN
-#define INSTRUMENT_SIN
+#ifndef INSTRUMENT_SENO
+#define INSTRUMENT_SENO
 
 #include <vector>
 #include <string>
@@ -11,13 +11,11 @@ namespace upc {
     EnvelopeADSR adsr;
     unsigned int index;
 	float A;
-    float f0;
-    float inc;
-    float a;
     std::vector<float> tbl;
+    float f0,inc,a;
   public:
     InstrumentSIN(const std::string &param = "");
-    void command(long cmd, long note, long velocity=1); 
+    void command(long cmd, long note, long velocity=100); 
     const std::vector<float> & synthesize();
     bool is_active() const {return bActive;} 
   };

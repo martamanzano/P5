@@ -3,6 +3,7 @@
 #include "seno.h"
 
 
+
 /*
   For each new instrument:
   - Add the header in this file
@@ -23,6 +24,7 @@ namespace upc {
     else if (name == "InstrumentSIN") {
       pInst = (Instrument *) new InstrumentSIN(parameters);
     }
+   
     return pInst;
   }
 }

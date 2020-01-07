@@ -22,7 +22,7 @@ InstrumentSIN::InstrumentSIN(const std::string &param)
 
   if (!kv.to_int("N",N))
     N = 40; //default value
-  
+
   //Create a tbl with one period of a sinusoidal wave
   tbl.resize(N);
   float phase = 0, step = 2 * M_PI /(float) N;
@@ -35,16 +35,17 @@ InstrumentSIN::InstrumentSIN(const std::string &param)
 
 
 void InstrumentSIN::command(long cmd, long note, long vel) {
-    f0=440*pow(2,(note-69.)/12);
+
+f0 = 440*pow(2,(note - 69.)/12);
+fprintf(stdout,"f0-->%f\n",f0);
   if (cmd == 9) {		//'Key' pressed: attack begins
     bActive = true;
     adsr.start();
     index = 0;
-    a = 0;
-    inc = ((f0 / SamplingRate) * tbl.size());
-    //inc = (f0/SamplingRate);
+	a = 0;
+	inc = ((f0 / SamplingRate) * tbl.size());
 	A = vel / 127.;
-  a = 0;
+	a = 0;
   }
   else if (cmd == 8) {	//'Key' released: sustain ends, release begins
     adsr.stop();
@@ -56,30 +57,26 @@ void InstrumentSIN::command(long cmd, long note, long vel) {
 
 
 const vector<float> & InstrumentSIN::synthesize() {
-  if (not bActive)
-    return x;
-  
   if (not adsr.active()) {
-    bActive = false;
     x.assign(x.size(), 0);
+    bActive = false;
     return x;
   }
+  else if (not bActive)
+    return x;
 
   for (unsigned int i=0; i<x.size(); ++i) {
-  
-  a = a + inc;
-  
 
-    //AMB INTERPOLACIÓ A MILLORAR 
-    	
-    x[i] =tbl[round(a)]+(a-round(a))*(tbl[round(a+1)]-tbl[round(a)])/(round(a+1)-round(a));
-    //SENSE INTERPOLACIÓ
-    
-    //x[i] =  A*tbl[round(a)];
-    if (index == tbl.size())
-      index = index - tbl.size();
+	a = a + inc;
+//Sin interpolación
 
-    while(a >= tbl.size()) a = a - tbl.size();
+//	x[i] = A * tbl[round(phas)];
+
+//Con interpolacioón 
+x[i] =tbl[floor(a)]+(a-floor(a))*(tbl[floor(a+1)]-tbl[floor(a)])/(floor(a+1)-floor(a));
+
+	 while(a >= tbl.size()) a = a - tbl.size();
+
   }
   adsr(x); //apply envelope to x and update internal status of ADSR
 
