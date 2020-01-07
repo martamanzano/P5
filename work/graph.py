@@ -11,13 +11,13 @@ def read_txt(filename):
     return np.array(values)
 
 
-filename1 = "../../work/tblfile.txt"
-filename = "../../work/xvector.txt"
+filename1 = "tblfile.txt"
+filename = "xvector.txt"
 x = read_txt(filename)
 tbl = read_txt(filename1)
-plt.plot(x[0:2500], 'b.', markersize=12)
-plt.plot(tbl[0:2500], 'r-')
-plt.title("Vector generat recorrent tbl")
-plt.legend(["Mostres", "Tbl Original"], loc='upper right')
+plt.plot(x[0:2500], 'r.', markersize=12)
+plt.plot(tbl[0:2500], 'g-')
+plt.title("Array generado a partir de tbl")
+plt.legend(["Samples", "Tbl "], loc='upper right')
 plt.autoscale(enable=True, axis='x', tight=True)
 plt.show()

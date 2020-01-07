@@ -29,6 +29,7 @@ FILE * f = fopen("tblfile.log","a");
   index = 0;
   for (int i=0; i < N ; ++i) {
     tbl[i] = sin(phase);
+    fprintf(f,"%f\n",tbl[i]);
     phase += step;
   }
   fclose(f);
@@ -38,13 +39,14 @@ FILE * f = fopen("tblfile.log","a");
 void InstrumentSIN::command(long cmd, long note, long vel) {
 
 f0 = 440*pow(2,(note - 69.)/12);
-fprintf(stdout,"f0-->%f\n",f0);
+
   if (cmd == 9) {		//'Key' pressed: attack begins
     bActive = true;
     adsr.start();
     index = 0;
 	a = 0;
 	inc = ((f0 / SamplingRate) * tbl.size());
+  
 	A = vel / 127.;
 	a = 0;
   }
@@ -73,11 +75,11 @@ fp = fopen("xvector.log","a");
 	a = a + inc;
 //Sin interpolación
 
-//	x[i] = A * tbl[round(phas)];
+	x[i] = A * tbl[round(a)];
 
-//Con interpolacioón 
-x[i] =tbl[floor(a)]+(a-floor(a))*(tbl[floor(a+1)]-tbl[floor(a)])/(floor(a+1)-floor(a));
-
+//Con interpolación 
+//x[i] =tbl[floor(a)]+(a-floor(a))*(tbl[floor(a+1)]-tbl[floor(a)])/(floor(a+1)-floor(a));
+fprintf(fp,"%f\n",x[i]);
 	 while(a >= tbl.size()) a = a - tbl.size();
 
   }
