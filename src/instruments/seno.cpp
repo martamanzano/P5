@@ -19,7 +19,7 @@ InstrumentSIN::InstrumentSIN(const std::string &param)
   */
   KeyValue kv(param);
   int N;
-
+FILE * f = fopen("tblfile.log","a");
   if (!kv.to_int("N",N))
     N = 40; //default value
 
@@ -31,6 +31,7 @@ InstrumentSIN::InstrumentSIN(const std::string &param)
     tbl[i] = sin(phase);
     phase += step;
   }
+  fclose(f);
 }
 
 
@@ -64,6 +65,8 @@ const vector<float> & InstrumentSIN::synthesize() {
   }
   else if (not bActive)
     return x;
+FILE * fp;
+fp = fopen("xvector.log","a");
 
   for (unsigned int i=0; i<x.size(); ++i) {
 
@@ -79,6 +82,6 @@ x[i] =tbl[floor(a)]+(a-floor(a))*(tbl[floor(a+1)]-tbl[floor(a)])/(floor(a+1)-flo
 
   }
   adsr(x); //apply envelope to x and update internal status of ADSR
-
+fclose(fp);
   return x;
 }

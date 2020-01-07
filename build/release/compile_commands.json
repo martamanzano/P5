@@ -31,6 +31,12 @@
   },
   {
     "directory": "/Users/victorestrada/Desktop/PAV/P5/build/release",
+    "command": "c++ -Isrc/25a6634@@synth@exe -Isrc -I../../src -I../../src/include -I../../src/synth -I../../src/instruments -I../../src/pav/docopt_cpp -Xclang -fcolor-diagnostics -pipe -Wall -Winvalid-pch -Wnon-virtual-dtor -std=c++11 -O3 -MD -MQ 'src/25a6634@@synth@exe/instruments_instrument_fm.cpp.o' -MF 'src/25a6634@@synth@exe/instruments_instrument_fm.cpp.o.d' -o 'src/25a6634@@synth@exe/instruments_instrument_fm.cpp.o' -c ../../src/instruments/instrument_fm.cpp",
+    "file": "../../src/instruments/instrument_fm.cpp",
+    "output": "src/25a6634@@synth@exe/instruments_instrument_fm.cpp.o"
+  },
+  {
+    "directory": "/Users/victorestrada/Desktop/PAV/P5/build/release",
     "command": "c++ -Isrc/25a6634@@synth@exe -Isrc -I../../src -I../../src/include -I../../src/synth -I../../src/instruments -I../../src/pav/docopt_cpp -Xclang -fcolor-diagnostics -pipe -Wall -Winvalid-pch -Wnon-virtual-dtor -std=c++11 -O3 -MD -MQ 'src/25a6634@@synth@exe/instruments_seno.cpp.o' -MF 'src/25a6634@@synth@exe/instruments_seno.cpp.o.d' -o 'src/25a6634@@synth@exe/instruments_seno.cpp.o' -c ../../src/instruments/seno.cpp",
     "file": "../../src/instruments/seno.cpp",
     "output": "src/25a6634@@synth@exe/instruments_seno.cpp.o"

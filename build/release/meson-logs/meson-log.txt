@@ -1,4 +1,4 @@
-Build started at 2020-01-07T12:56:51.286354
+Build started at 2020-01-07T16:09:13.181564
 Main binary: /Library/Frameworks/Python.framework/Versions/3.7/bin/python3.7
 Build Options: -Dprefix=/Users/victorestrada/PAV -Dlibdir=lib -Dbuildtype=release -Dbackend=ninja
 Python system: Darwin
@@ -24,8 +24,8 @@ Configuring Doxyfile using configuration
 Build targets in project: 5
 Found ninja-1.9.0 at /usr/local/bin/ninja
 Running compile:
-Working directory:  /var/folders/3x/hsgk3fln5_dbvmyqn243clrw0000gn/T/tmpji9rdq7l
-Command line:  c++ /var/folders/3x/hsgk3fln5_dbvmyqn243clrw0000gn/T/tmpji9rdq7l/testfile.cpp -o /var/folders/3x/hsgk3fln5_dbvmyqn243clrw0000gn/T/tmpji9rdq7l/output.obj -pipe -c -std=c++11 
+Working directory:  /var/folders/3x/hsgk3fln5_dbvmyqn243clrw0000gn/T/tmpgrcz5p6o
+Command line:  c++ /var/folders/3x/hsgk3fln5_dbvmyqn243clrw0000gn/T/tmpgrcz5p6o/testfile.cpp -o /var/folders/3x/hsgk3fln5_dbvmyqn243clrw0000gn/T/tmpgrcz5p6o/output.obj -pipe -c -std=c++11 
 
 Code:
  int i = static_cast<int>(0);
@@ -35,8 +35,8 @@ Compiler stderr:
  
 Compiler accepts -std=c++11: YES
 Running compile:
-Working directory:  /Users/victorestrada/Desktop/PAV/P5/build/release/meson-private/tmp_e2wkue9
-Command line:  c++ /Users/victorestrada/Desktop/PAV/P5/build/release/meson-private/tmp_e2wkue9/testfile.cpp -o /Users/victorestrada/Desktop/PAV/P5/build/release/meson-private/tmp_e2wkue9/output.obj -pipe -c -O0 -fpermissive --print-search-dirs 
+Working directory:  /Users/victorestrada/Desktop/PAV/P5/build/release/meson-private/tmpnx8kf4cc
+Command line:  c++ /Users/victorestrada/Desktop/PAV/P5/build/release/meson-private/tmpnx8kf4cc/testfile.cpp -o /Users/victorestrada/Desktop/PAV/P5/build/release/meson-private/tmpnx8kf4cc/output.obj -pipe -c -O0 -fpermissive --print-search-dirs 
 
 Code:
  
